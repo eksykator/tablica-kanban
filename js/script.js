@@ -9,10 +9,21 @@ var board = {
 
 function Column(name) {
     this.name = name;
-    this.divColumn = document.createElement('div');
-    this.divColumn.classList.add('column');
-    this.divColumn.innerHTML = '<h2>' + this.name + '</h2>';
-    console.log(Column);
+    
+    var deleteColumnButton = document.getElementById('column-template').innerHTML;
+    Mustache.parse(deleteColumnButton);  
+    this.divColumn = Mustache.render(deleteColumnButton);
+    console.log(deleteColumnButton);
+    console.log(this.divColumn);
+    this.divColumn = document.createRange().createContextualFragment(this.divColumn);
+    console.log(this.divColumn);
+    
+    this.divColumn.querySelector('.name-of-column').innerHTML = name;
+    
+    this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
+        this.parentNode.parentNode.removeChild(this.parentNode);
+    })
+    
     Column.prototype.addCard = function(card) {
         
         var self = this;
@@ -41,9 +52,4 @@ var cardTask2 = new Card('Task 2', 'Lorem ipsum dolor sit amet, consectetur adip
 
 var cardTask3 = new Card('Task 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
-columnToDo.addCard(cardTask1);
-
-columnDoing.addCard(cardTask2);
-
-columnDone.addCard(cardTask3);
 
