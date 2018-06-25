@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addColumn: function(column) {
             console.log(column.divColumn)
             this.divBoard.appendChild(column.divColumn);
+            initSortable(column.id);
         }
     }
 
@@ -17,6 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return str;
     }
      
+    function initSortable(id) {
+        var el = document.getElementById(id);
+        var sortable = Sortable.create(el, {
+            group: 'kanban',
+            sort: true
+        });
+    }
+    
     function Card(content) {
         this.content = content;
         this.id = randomString();

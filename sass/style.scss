@@ -1,19 +1,51 @@
 .column-container {
-    width: 600px;
-    height: 500px;
-    background-color: aquamarine;
+    width: 1000px;
+    background-color: darkgrey;
+    display: flex;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    align-content: stretch;
 }
 
 .column {
-    display: inline-block;
-    width: 150px;
-    height: 480px;
+    height: 100%;
     margin: 10px;
-    background-color: antiquewhite;
+    background-color: #974444;
+    justify-content: space-around;
+    flex-grow: 2;
+    text-align: center;
 }
 
 .card {
-    width: 120px;
-    background-color: bisque;
-    margin: 10px;
+    width: 100%;
+    background-color: #B95567;
+    text-align: center;
+}
+
+ul {
+    height: 100%;
+    list-style-type: none;
+    padding-left: 0px;
+    min-height: 100px;
+}
+
+button {
+    border: 1px solid #923E54;
+    background-color: darkgray;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 3px;
+    background-color: #974444;
+    color: #fff;
+}
+
+p {
+    padding: 10px;
+}
+
+h2 {
+    text-transform: uppercase;
 }
