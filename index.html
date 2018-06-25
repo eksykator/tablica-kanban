@@ -16,13 +16,12 @@
             <h2 class="name-of-column"> {{ nameOfColumn }} </h2>
             <button class="delete-column">x</button>
             <button class="add-card">Add a card</button>
+            <ul id={{ id }}></ul>
         </script>
         
         <script id="card-template" type="x-tmpl-mustache">
-            <div class="card">
-                <p> {{ contentOfCard }} </p>
-                <button class="delete-card">x</button>
-            </div>
+            <p> {{ contentOfCard }} </p>
+            <button class="delete-card">x</button>
         </script>
         
         

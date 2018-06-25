@@ -8,39 +8,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function randomString() {
+        var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var str = '';
+        for(var i = 0; i < 10; i++) {
+            str += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return str;
+    }
+     
     function Card(content) {
         this.content = content;
+        this.id = randomString();
 
-        var cardContent = {
+        var cardParams = {
             contentOfCard: content
         }
 
         var cardTemplate = document.getElementById('card-template').innerHTML;
         Mustache.parse(cardTemplate);
 
-        this.divCard = document.createElement('div');
+        this.divCard = document.createElement('li');
         this.divCard.classList.add('card');
-        this.divCard.innerHTML = Mustache.render(cardTemplate, cardContent);
+        this.divCard.id = this.id;
+        this.divCard.innerHTML = Mustache.render(cardTemplate, cardParams);
 
         this.divCard.querySelector('.delete-card').addEventListener('click', function() {
             this.parentNode.parentNode.removeChild(this.parentNode);
         });
-
     }
 
     function Column(name) {
         this.name = name;
+        this.id = randomString();
 
         var ColumnTemplate = document.getElementById('column-template').innerHTML;
         Mustache.parse(ColumnTemplate);  
 
-        var columnName = {
-            nameOfColumn: name
+        var columnParams = {
+            nameOfColumn: name,
+            id: this.id
         };
-
+        
         this.divColumn = document.createElement('div');
         this.divColumn.classList.add('column');
-        this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnName);
+        this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnParams);
 
 
         this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
@@ -55,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             var card = new Card(contentOfCard);
             console.log(card, card.divCard);    
-            self.divColumn.appendChild(card.divCard);
+            self.divColumn.querySelector('ul').appendChild(card.divCard);
 
         });
 
