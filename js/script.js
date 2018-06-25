@@ -65,19 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(self.divColumn);
             var contentOfCard = prompt('Podaj treść karteczki');
 
-            var card = new Card(contentOfCard);
-            console.log(card, card.divCard);    
-            self.divColumn.querySelector('ul').appendChild(card.divCard);
+            var card = new Card(contentOfCard);   
+       
+           self.addCard(card);
+            
 
         });
-
     }
 
-    Column.prototype.addCard = function() {
-        console.log(addCard);
+    Column.prototype.addCard = function(card) {
         var self = this;
-        self.divColumn.appendChild(card.divCard);
-        console.log(divCard);
+        self.divColumn.querySelector('ul').appendChild(card.divCard);
     }
 
     var addColumnButton = document.querySelector('.create-column');
@@ -86,9 +84,27 @@ document.addEventListener('DOMContentLoaded', function() {
         var columnName = new Column(nameOfColumn);
         board.addColumn(columnName);
     });
-
-
-
-
+    
+    var todoColumn = new Column('To do');
+    var doingColumn = new Column('Doing');
+    var doneColumn = new Column('Done');
+    
+    board.addColumn(todoColumn);
+    board.addColumn(doingColumn);
+    board.addColumn(doneColumn);
+    
+    var card1 = new Card('New task');
+    var card2 = new Card('Create kanban boards');
+    var card3 = new Card('Lorem ipsum');
+    var card4 = new Card('dolor sit amet');
+    var card5 = new Card('lalalallal');
+    var card6 = new Card('blebleble');
+    
+    todoColumn.addCard(card1);
+    todoColumn.addCard(card6);
+    todoColumn.addCard(card4);
+    doingColumn.addCard(card2);
+    doingColumn.addCard(card3);
+    doneColumn.addCard(card5);
 });
    
