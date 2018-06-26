@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
         name: 'Kanban board',
         divBoard: document.querySelector('.column-container'),
         addColumn: function(column) {
-            console.log(column.divColumn)
             this.divBoard.appendChild(column.divColumn);
             initSortable(column.id);
         }
@@ -63,28 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
         this.divColumn.classList.add('column');
         this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnParams);
 
-
         this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
             this.parentNode.parentNode.removeChild(this.parentNode);
         });
 
         var self = this;
         this.divColumn.querySelector('.add-card').addEventListener('click', function() {
-            console.log(self);
-            console.log(self.divColumn);
             var contentOfCard = prompt('Podaj treść karteczki');
-
             var card = new Card(contentOfCard);   
-       
-           self.addCard(card);
-            
-
+            self.addCard(card);
         });
     }
 
     Column.prototype.addCard = function(card) {
-        var self = this;
-        self.divColumn.querySelector('ul').appendChild(card.divCard);
+        this.divColumn.querySelector('ul').appendChild(card.divCard);
     }
 
     var addColumnButton = document.querySelector('.create-column');
