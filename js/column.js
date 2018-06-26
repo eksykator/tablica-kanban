@@ -1,6 +1,6 @@
- function Column(name) {
+ function Column(name, id) {
     this.name = name;
-    this.id = randomString();
+    this.id = id;
 
     var ColumnTemplate = document.getElementById('column-template').innerHTML;
     Mustache.parse(ColumnTemplate);  
