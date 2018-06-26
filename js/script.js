@@ -1,12 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-     var board = {
-        name: 'Kanban board',
-        divBoard: document.querySelector('.column-container'),
-        addColumn: function(column) {
-            this.divBoard.appendChild(column.divColumn);
-            initSortable(column.id);
-        }
-    }
 
     function randomString() {
         var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -23,59 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             group: 'kanban',
             sort: true
         });
-    }
-    
-    function Card(content) {
-        this.content = content;
-        this.id = randomString();
-
-        var cardParams = {
-            contentOfCard: content
-        }
-
-        var cardTemplate = document.getElementById('card-template').innerHTML;
-        Mustache.parse(cardTemplate);
-
-        this.divCard = document.createElement('li');
-        this.divCard.classList.add('card');
-        this.divCard.id = this.id;
-        this.divCard.innerHTML = Mustache.render(cardTemplate, cardParams);
-
-        this.divCard.querySelector('.delete-card').addEventListener('click', function() {
-            this.parentNode.parentNode.removeChild(this.parentNode);
-        });
-    }
-
-    function Column(name) {
-        this.name = name;
-        this.id = randomString();
-
-        var ColumnTemplate = document.getElementById('column-template').innerHTML;
-        Mustache.parse(ColumnTemplate);  
-
-        var columnParams = {
-            nameOfColumn: name,
-            id: this.id
-        };
-        
-        this.divColumn = document.createElement('div');
-        this.divColumn.classList.add('column');
-        this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnParams);
-
-        this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
-            this.parentNode.parentNode.removeChild(this.parentNode);
-        });
-
-        var self = this;
-        this.divColumn.querySelector('.add-card').addEventListener('click', function() {
-            var contentOfCard = prompt('Podaj treść karteczki');
-            var card = new Card(contentOfCard);   
-            self.addCard(card);
-        });
-    }
-
-    Column.prototype.addCard = function(card) {
-        this.divColumn.querySelector('ul').appendChild(card.divCard);
     }
 
     var addColumnButton = document.querySelector('.create-column');
