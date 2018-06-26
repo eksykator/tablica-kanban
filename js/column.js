@@ -37,10 +37,7 @@
         .then(function(resp) {
             var card = new Card(contentOfCard, resp.id);   
             self.addCard(card);
-            console.log(self);
         })
-        
-        
     });
 }
 

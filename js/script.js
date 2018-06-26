@@ -1,7 +1,8 @@
 function setupColumns(columns) {
     console.log(columns);
-    columns.forEach(function(column) {
-    });
+    for(var i = 0; i < columns.length; i++) {
+        board.addColumn(new Column(columns[i].name, columns[i].id));
+    }
 }
 
 fetch(baseUrl + '/board', { headers: myHeaders })
@@ -38,7 +39,7 @@ var todoColumn = new Column('To do', 15);
 var doingColumn = new Column('Doing', 25);
 var doneColumn = new Column('Done', 45);
     
-board.addColumn(todoColumn);
+board.addColumn(new Column('To do', 15));
 board.addColumn(doingColumn);
 board.addColumn(doneColumn);
     
