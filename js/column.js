@@ -21,8 +21,26 @@
     var self = this;
     this.divColumn.querySelector('.add-card').addEventListener('click', function() {
         var contentOfCard = prompt('Podaj treść karteczki');
-        var card = new Card(contentOfCard);   
-        self.addCard(card);
+        
+        var data = new FormData();
+        data.append('name', contentOfCard);
+        data.append('bootcamp_kanban_column_id', id)
+        
+        fetch(baseUrl + '/card', {
+            method: 'POST',
+            headers: myHeaders,
+            body: data,
+        })
+        .then(function(resp) {
+            return resp.json();
+        })
+        .then(function(resp) {
+            var card = new Card(contentOfCard, resp.id);   
+            self.addCard(card);
+            console.log(self);
+        })
+        
+        
     });
 }
 

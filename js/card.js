@@ -1,6 +1,6 @@
-function Card(content) {
+function Card(content, id) {
         this.content = content;
-        this.id = randomString();
+        this.id = id;
 
         var cardParams = {
             contentOfCard: content

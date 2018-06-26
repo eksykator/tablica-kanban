@@ -29,15 +29,14 @@ var addColumnButton = document.querySelector('.create-column');
         return resp.json();
     })
         .then(function(resp) {
-        console.log(resp);
         var column = new Column(nameOfColumn, resp.id);
         board.addColumn(column);
     })
 });
     
-var todoColumn = new Column('To do', '15');
-var doingColumn = new Column('Doing', '25');
-var doneColumn = new Column('Done', '45');
+var todoColumn = new Column('To do', 15);
+var doingColumn = new Column('Doing', 25);
+var doneColumn = new Column('Done', 45);
     
 board.addColumn(todoColumn);
 board.addColumn(doingColumn);
