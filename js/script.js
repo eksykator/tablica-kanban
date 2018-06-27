@@ -1,8 +1,12 @@
 function setupColumns(columns) {
     console.log(columns);
     for(var i = 0; i < columns.length; i++) {
-        board.addColumn(new Column(columns[i].name, columns[i].id));
-    }
+        var columnObject = new Column(columns[i].name, columns[i].id)
+        board.addColumn(columnObject);
+        for(var j = 0; j < columns[i].cards.length; j++) {
+            columnObject.addCard(new Card(columns[i].cards[j].name, columns[i].cards[j].id))
+        }
+    } 
 }
 
 fetch(baseUrl + '/board', { headers: myHeaders })
@@ -34,27 +38,6 @@ var addColumnButton = document.querySelector('.create-column');
         board.addColumn(column);
     })
 });
-    
-var todoColumn = new Column('To do', 15);
-var doingColumn = new Column('Doing', 25);
-var doneColumn = new Column('Done', 45);
-    
-board.addColumn(new Column('To do', 15));
-board.addColumn(doingColumn);
-board.addColumn(doneColumn);
-    
-var card1 = new Card('New task');
-var card2 = new Card('Create kanban boards');
-var card3 = new Card('Lorem ipsum');
-var card4 = new Card('dolor sit amet');
-var card5 = new Card('lalalallal');
-var card6 = new Card('blebleble');
-    
-todoColumn.addCard(card1);
-todoColumn.addCard(card6);
-todoColumn.addCard(card4);
-doingColumn.addCard(card2);
-doingColumn.addCard(card3);
-doneColumn.addCard(card5);
+
 
    
