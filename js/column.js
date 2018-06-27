@@ -14,11 +14,26 @@
     this.divColumn.classList.add('column');
     this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnParams);
 
+    var columnObject = this; 
+     
     this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
-        this.parentNode.parentNode.removeChild(this.parentNode);
+       
+        var self = this;
+        
+        fetch(baseUrl + '/column/' + columnObject.id, {
+            method: 'DELETE',
+            headers: myHeaders
+        })
+        .then(function(resp) {
+            return resp.json();
+        })
+        .then(function(resp) {
+             self.parentNode.parentNode.removeChild(self.parentNode);
+        })
     });
 
     var self = this;
+     
     this.divColumn.querySelector('.add-card').addEventListener('click', function() {
         var contentOfCard = prompt('Podaj treść karteczki');
         
