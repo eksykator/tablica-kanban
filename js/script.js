@@ -1,5 +1,4 @@
 function setupColumns(columns) {
-    console.log(columns);
     for(var i = 0; i < columns.length; i++) {
         var columnObject = new Column(columns[i].name, columns[i].id)
         board.addColumn(columnObject);
