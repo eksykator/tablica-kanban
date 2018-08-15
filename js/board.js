@@ -1,8 +1,8 @@
 var board = {
         name: 'Kanban board',
-        divBoard: document.querySelector('.column-container'),
+        boardContainer: document.querySelector('.column-container'),
         addColumn: function(column) {
-            this.divBoard.appendChild(column.columnContainer);
+            this.boardContainer.appendChild(column.columnContainer);
             initSortable(column.id);
         }
     }
