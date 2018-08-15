@@ -9,14 +9,14 @@ function Card(content, id) {
     var cardTemplate = document.getElementById('card-template').innerHTML;
     Mustache.parse(cardTemplate);
 
-    this.divCard = document.createElement('li');
-    this.divCard.classList.add('card');
-    this.divCard.id = this.id;
-    this.divCard.innerHTML = Mustache.render(cardTemplate, cardParams);
+    this.cardItem = document.createElement('li');
+    this.cardItem.classList.add('card');
+    this.cardItem.id = this.id;
+    this.cardItem.innerHTML = Mustache.render(cardTemplate, cardParams);
         
     var cardObject = this;
     
-    this.divCard.querySelector('.delete-card').addEventListener('click', function() {
+    this.cardItem.querySelector('.delete-card').addEventListener('click', function() {
             
         var self = this;
             

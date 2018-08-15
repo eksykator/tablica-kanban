@@ -57,6 +57,6 @@
 }
 
 Column.prototype.addCard = function(card) {
-    this.divColumn.querySelector('ul').appendChild(card.divCard);
+    this.divColumn.querySelector('ul').appendChild(card.cardItem);
 }
 
