@@ -10,13 +10,13 @@
         id: this.id
     };
         
-    this.divColumn = document.createElement('div');
-    this.divColumn.classList.add('column');
-    this.divColumn.innerHTML = Mustache.render(ColumnTemplate, columnParams);
+    this.columnContainer = document.createElement('div');
+    this.columnContainer.classList.add('column');
+    this.columnContainer.innerHTML = Mustache.render(ColumnTemplate, columnParams);
 
     var columnObject = this; 
      
-    this.divColumn.querySelector('.delete-column').addEventListener('click', function() {
+    this.columnContainer.querySelector('.delete-column').addEventListener('click', function() {
        
         var self = this;
         
@@ -34,7 +34,7 @@
 
     var self = this;
      
-    this.divColumn.querySelector('.add-card').addEventListener('click', function() {
+    this.columnContainer.querySelector('.add-card').addEventListener('click', function() {
         var contentOfCard = prompt('Podaj treść karteczki');
         
         var data = new FormData();
@@ -57,6 +57,6 @@
 }
 
 Column.prototype.addCard = function(card) {
-    this.divColumn.querySelector('ul').appendChild(card.cardItem);
+    this.columnContainer.querySelector('ul').appendChild(card.cardItem);
 }
 
